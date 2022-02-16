@@ -1,3 +1,6 @@
+# Let me ask 
+This project was develop during the next level week 6 by Rocketseat.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
