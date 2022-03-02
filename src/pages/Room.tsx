@@ -12,6 +12,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 
 import { getDatabase, ref, push, onValue } from 'firebase/database';
+import { Question } from '../components/Question';
 
 type RoomParams = {
     id: string;
@@ -113,7 +114,7 @@ export function Room() {
 
             <main>
                 <div className="room-title">
-                    <h1>{title}</h1>
+                    <h1>Sala {title}</h1>
                     <span>
                         {
                             (questions.length === 0) 
@@ -134,7 +135,7 @@ export function Room() {
                     <div className="form-footer">
                         {user ? (
                             <div className='user-info'>
-                                <img src={user.avatar} alt={user.name} />
+                                <img referrerPolicy="no-referrer" src={user.avatar} alt={user.name} />
                                 <span>{user.name}</span>
                             </div>
                         ) : (
@@ -144,28 +145,16 @@ export function Room() {
                     </div>
                 </form>
 
-                <div className='question-card'>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-                        Aspernatur laboriosam qui at quam architecto officiis voluptas dolorum 
-                        amet temporibus, eaque, aliquid adipisci voluptates asperiores, 
-                        unde ex odit totam. Molestias, fugiat.
-                    </p>
-
-                    <div>
-                        <div className='user-info'>
-                            <img src={user?.avatar} alt="" />
-                            <span>{user?.name}</span>
-                        </div>
-                        <div className='question-likes'>
-                            <span>21</span>
-                            <img src={likeImg} alt="" />
-                        </div>
-                    </div>
-                    
+                <div className="question-list">
+                    {
+                        questions.map(question => 
+                            <Question 
+                                key={question.id}
+                                content={question.content} 
+                                author={question.author} 
+                            />)
+                    }
                 </div>
-
-                {JSON.stringify(questions)}
 
             </main>
         </div>
